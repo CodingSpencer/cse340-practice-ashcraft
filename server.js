@@ -38,14 +38,31 @@ app.get('/', (req, res) => {
     res.render('home', { title });
 });
 
-app.get('/about', (req, res) => {
-    const title = 'About Me';
-    res.render('about', { title });
-});
 
 app.get('/products', (req, res) => {
     const title = 'Our Products';
     res.render('products', { title });
+});
+
+app.get('/about', (req, res) => {
+    const student = {
+        name: 'Spencer Ashcraft',
+        age: 22,
+        desc: "💻 I’m a Software Engineering student at Brigham Young University - Idaho with a passion for coding, Linux 🐧, and all things tech. I love diving into projects where I can learn by doing, whether that’s building software, experimenting with hardware, or exploring new technologies.",
+        major: 'Software Engineering',
+        hobbies: [
+            "🏓 Ping Pong",
+            "🥏 Disc Golf",
+            "📚 Reading",
+            "🎵 Pop Culture Music",
+            "🛠️ Home Labs",
+            "🎬 Movies",
+            "🧱 Legos",
+            "and more!"
+        ]
+    };
+
+    res.render('student', { student });
 });
 
 // When in development mode, start a WebSocket server for live reloading

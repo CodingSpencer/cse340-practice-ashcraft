@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[PAGE TITLE]</title>
+    <title>Student Information</title>
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <h1>[PAGE HEADING]</h1>
+    <h1>Student Information</h1>
+
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
@@ -15,6 +16,20 @@
             <li><a href="/products">Products</a></li>
         </ul>
     </nav>
-    <p>[Add some content specific to this page]</p>
+
+    <div class="student-info">
+        <p><strong>Name:</strong> <%= student.name %></p>
+        <p><strong>Age:</strong> <%= student.age %></p>
+        <p><strong>Description:</strong> <%= student.desc %></p>
+        <p><strong>Major:</strong> <%= student.major %></p>
+
+        <p><strong>Hobbies:</strong></p>
+        <ul>
+            <% student.hobbies.forEach(hobby => { %>
+                <li><%= hobby %></li>
+            <% }) %>
+        </ul>
+        <img src="/images/Spencer-Headshot.jpg" alt="Spencer Headshot">
+    </div>
 </body>
 </html>
