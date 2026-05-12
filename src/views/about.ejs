@@ -3,19 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Information</title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <h1>Student Information</h1>
-
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/products">Products</a></li>
-        </ul>
-    </nav>
+    <%- include('partials/header', { heading: "About Me" }) %>
 
     <div class="student-info">
         <p><strong>Name:</strong> <%= student.name %></p>
@@ -31,5 +23,7 @@
         </ul>
         <img src="/images/Spencer-Headshot.jpg" alt="Spencer Headshot">
     </div>
+
+    <%- include('partials/footer') %>
 </body>
 </html>

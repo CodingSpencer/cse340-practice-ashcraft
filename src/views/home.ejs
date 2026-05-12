@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[PAGE TITLE]</title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <h1>[PAGE HEADING]</h1>
-    <nav>
+    <%- include('partials/header', { heading: "Software Engineering Student" }) %>
+
+    <section class="home-content">
+        <p>
+            Hello! My name is Spencer, and I am currently studying
+            Software Engineering at BYU-Idaho. I enjoy learning about
+            web development, backend systems, and collaborative software projects.
+        </p>
+
+        <p>
+            This website was built using Node.js, Express, EJS, HTML, and CSS
+            as part of my coursework and personal practice.
+        </p>
+
+        <h3>Current Interests</h3>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/products">Products</a></li>
+            <li>Web Development</li>
+            <li>Linux</li>
+            <li>Law</li>
+            <li>Mobile Development</li>
+            <li>Team Projects</li>
         </ul>
-    </nav>
-    <p>[Add some content specific to this page]</p>
+
+        <h3>Goals</h3>
+        <p>
+            My goal is to continue improving my software engineering skills,
+            contribute to meaningful projects, and prepare for a future career
+            in technology.
+        </p>
+    </section>
+
+    <%- include('partials/footer') %>
 </body>
 </html>

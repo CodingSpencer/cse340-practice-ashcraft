@@ -1,0 +1,161 @@
+/* --- Global & Layout Resets --- */
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- Course Header Section --- */
+.course-header {
+    background: #f8fafc;
+    border-left: 5px solid #1e3a8a; /* Deep university blue */
+    padding: 2rem;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.course-header h1 {
+    font-size: 2.25rem;
+    margin: 0 0 0.5rem 0;
+    color: #1e293b;
+}
+
+.course-meta {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #64748b;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.course-description {
+    font-size: 1.1rem;
+    color: #475569;
+    margin: 0;
+}
+
+/* --- Sections Header & Sorting --- */
+.sections-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.sections-header h2 {
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin: 0;
+}
+
+.sort-options {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.sort-options span {
+    color: #64748b;
+    font-weight: 500;
+}
+
+.sort-options a {
+    text-decoration: none;
+    color: #475569;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    transition: all 0.2s ease;
+}
+
+.sort-options a:hover {
+    background-color: #f1f5f9;
+    color: #1e3a8a;
+}
+
+/* Active Sorting State */
+.sort-options a.active {
+    background-color: #1e3a8a;
+    color: #ffffff;
+    border-color: #1e3a8a;
+    font-weight: 500;
+}
+
+/* --- Section Cards List --- */
+.section-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.section-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.section-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+}
+
+.section-time {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 0.75rem;
+}
+
+.section-room, 
+.section-professor {
+    font-size: 0.95rem;
+    color: #475569;
+    margin: 0.25rem 0;
+}
+
+/* --- Back Navigation --- */
+.navigation {
+    margin-top: 2rem;
+}
+
+.navigation a {
+    display: inline-flex;
+    align-items: center;
+    color: #1e3a8a;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.navigation a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 640px) {
+    .sections-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .sort-options {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}

@@ -1,0 +1,8 @@
+@import url(main.css);
+
+/* Partial Styles */
+@import url(partials/course-details.css);
+
+/* Page-Specific Styles */
+@import url(partials/page.css);
+@import url(partials/catalog.css);

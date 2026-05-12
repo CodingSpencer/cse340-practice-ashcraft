@@ -1,12 +1,29 @@
-<% if (NODE_ENV.includes('dev')) { %>
+<head>
+    <link rel="stylesheet" href="/css/main.css"> <% if (typeof cssFile !== 'undefined') { %>
+        <link rel="stylesheet" href="<%= cssFile %>">
+    <% } %>
+</head>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/catalog">Course Catalog</a></li>
+            <li><a href="/products">Products</a></li>
+        </ul>
+    </nav>
+
+    <h1><%= typeof heading !== 'undefined' ? heading : 'BYU-Idaho Student Portfolio' %></h1>
+</header>
+
+<% if (typeof nodeEnv !== 'undefined' && nodeEnv.includes('dev')) { %>
     <script>
-        // Get the current hostname and port from the browser
         const host = window.location.hostname;
         const currentPort = window.location.port;
-        // Calculate WebSocket port (current port + 1)
         const wsPort = currentPort ? (parseInt(currentPort) + 1) : 3001;
-        // Create WebSocket connection using dynamic hostname and port
         const ws = new WebSocket(`ws://${host}:${wsPort}`);
+
         ws.onclose = () => {
             setTimeout(() => location.reload(), 2000);
         };
