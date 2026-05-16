@@ -4,16 +4,23 @@
     <% } %>
 </head>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/catalog">Course Catalog</a></li>
-        </ul>
-    </nav>
+<header class="site-header">
+    <div class="header-container">
+        <!-- The Heading acts as your brand/logo column -->
+        <h1 class="header-logo">
+            <%= typeof heading !== 'undefined' ? heading : 'BYU-Idaho Student Portfolio' %>
+        </h1>
 
-    <h1><%= typeof heading !== 'undefined' ? heading : 'BYU-Idaho Student Portfolio' %></h1>
+        <nav class="header-nav">
+            <ul class="nav-list">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/catalog" class="nav-link">Course Catalog</a></li>
+                <li><a href="/departments" class="nav-link">Departments</a></li>
+                <li><a href="/faculty" class="nav-link">Faculty Directory</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
 <% if (typeof nodeEnv !== 'undefined' && nodeEnv.includes('dev')) { %>

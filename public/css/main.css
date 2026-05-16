@@ -1,70 +1,27 @@
-html, body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    color: #222;
-}
+@layer tokens, base, layout, components, utilities, vendors;
 
-/* Header */
-h1 {
-    margin-bottom: 15px;
-    font-size: 1.8rem;
-}
+/* TOKENS */
+@import "./tokens/color.css" layer(tokens);
+@import "./tokens/variables.css" layer(tokens);
 
-/* NAV (nested like your format) */
-body {
-    nav {
-        margin-bottom: 20px;
+/* BASE */
+@import "./base/elements.css" layer(base);
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            gap: 15px;
-        }
+/* LAYOUT */
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+/* COMPONENTS */
+/* PARTIALS */
+@import "./components/sections/header.css" layer(components);
+@import "./components/sections/card.css" layer(components);
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+/* PAGES */
+@import "./components/pages/catalog.css" layer(components);
+@import "./components/pages/course-details.css" layer(components);
+@import "./components/pages/departments.css" layer(components);
+@import "./components/pages/faculty.css" layer(components);
+@import "./components/pages/page.css" layer(components);
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
-    }
-}
+/* UTILITIES */
+@import "./utilities/utilities.css" layer(utilties);
 
-/* Student Info Card */
-.student-info,
-.home-content {
-    background: white;
-    padding: 20px;
-    border-radius: 6px;
-    max-width: 600px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-
-    p {
-        margin-bottom: 10px;
-    }
-
-    ul {
-        margin-top: 5px;
-        margin-bottom: 15px;
-        padding-left: 20px;
-    }
-
-    img {
-        width: 150px;
-        height: auto;
-        border-radius: 6px;
-        margin-top: 10px;
-        display: block;
-    }
-}
+/* VENDORS */

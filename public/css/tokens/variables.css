@@ -1,0 +1,54 @@
+:root {
+        /* ==========================================
+        THE BASE UNITS
+        ========================================== */
+        --unit-space:  1rem;  /* Main layout and structural grid */
+        --unit-font:   1rem;  /* Core typography root scale */
+        --unit-radius: 2px;   /* Core corner rounding multiplier */
+
+        /* ==========================================
+        SPACING SCALE (Derived from Space Base)
+        ========================================== */
+        --spacing-xs: calc(var(--unit-space) * 0.25);
+        --spacing-sm: calc(var(--unit-space) * 0.5);
+        --spacing-md: var(--unit-space);
+        --spacing-lg: calc(var(--unit-space) * 1.5);
+        --spacing-xl: calc(var(--unit-space) * 2);
+        --spacing-xxl: calc(var(--unit-space) * 3);
+
+        /* ==========================================
+        TYPOGRAPHY SCALE (Derived from Font Base)
+        ========================================== */
+        --font-size-base: var(--unit-font);
+        --font-size-md:   calc(var(--unit-font) * 1.1);
+        
+        --font-weight-normal: 400;
+        --font-weight-medium: 500;
+        --font-weight-bold: bold;
+        
+        --line-height-tight: 1.5;
+        --line-height-base: 1.6;
+
+        /* ==========================================
+        BORDERS & CORNERS (Derived from Radius Base)
+        ========================================== */
+        --border-width-thin:  1px;
+        --border-width-thick: 2px;
+        
+        --radius-sm: calc(var(--unit-radius) * 2);
+        --radius-md: calc(var(--unit-radius) * 3);
+        --radius-lg: calc(var(--unit-radius) * 4); 
+
+        /* ==========================================
+        LAYOUT SIZES
+        ========================================== */
+        --layout-max-width-narrow: 800px;
+        --layout-max-width-wide: 900px;
+        --breakpoint-mobile: 600px; /* Mobile Breakpoint */
+
+        /* ==========================================
+        ANIMATIONS
+        ========================================== */
+        --transition-duration-fast: 0.2s;
+        --transition-timing-default: ease;
+    }

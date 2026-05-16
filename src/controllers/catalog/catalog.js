@@ -4,7 +4,7 @@ import { getAllCourses, getCourseById, getSortedSections, getCoursesByDepartment
 const catalogPage = (req, res) => {
     const courses = getAllCourses();
 
-    res.render('catalog', {
+    res.render('courses/catalog', {
         title: 'Course Catalog',
         courses: courses
     });
@@ -26,7 +26,7 @@ const courseDetailPage = (req, res, next) => {
     const sortBy = req.query.sort || 'time';
     const sortedSections = getSortedSections(course.sections, sortBy);
 
-    res.render('course-detail', {
+    res.render('courses/course-detail', {
         title: `${course.id} - ${course.title}`,
         course: { ...course, sections: sortedSections },
         currentSort: sortBy,
@@ -43,7 +43,7 @@ const departmentsPage = (req, res, next) => {
         const departmentsData = getCoursesByDepartment();
 
         // Render the view, passing along the title and data payload
-        res.render('departments', {
+        res.render('pages/departments', {
             title: 'Departments Overview',
             departments: departmentsData
         });

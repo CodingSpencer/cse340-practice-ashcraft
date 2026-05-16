@@ -1,0 +1,32 @@
+:root {
+    /* --- CORE PALETTE BRANDING --- */
+    --primary-color: #2c5aa0;
+    --primary-color-light: #f0f4f8;
+    
+    /* --- NEUTRAL SHADES (Text & UI Elements) --- */
+    --text-color-dark: #444444;
+    --text-color-medium: #555555;
+    --text-color-light: #666666;
+    --text-color-white: #ffffff;
+    
+    /* --- BACKGROUNDS --- */
+    --bg-color-white: #ffffff;
+    --bg-color-light: #f9f9f9;
+    
+    /* --- BORDERS & SHADOWS --- */
+    --border-color-light: #dddddd;
+    --shadow-color-rgba: rgba(0, 0, 0, 0.1);
+
+    /* --- APPLICATION TOKENS (Functional Aliases) --- */
+    --link-color: var(--primary-color);
+    --link-hover-bg: var(--primary-color-light);
+    
+    --card-bg-primary: var(--bg-color-white);
+    --card-bg-secondary: var(--bg-color-light);
+    --card-border: var(--border-color-light);
+    --card-hover-shadow: 0 4px 8px var(--shadow-color-rgba);
+    
+    --heading-color: var(--primary-color);
+    --divider-color-brand: var(--primary-color);
+    --active-state-bg: var(--primary-color);
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="<%= bodyClass %>">
+    <main class="container">
+        <nav>
+            <a href="/faculty">&larr; Back to Faculty Directory</a>
+        </nav>
+
+        <article class="profile-card">
+            <header>
+                <h1><%= faculty.name %></h1>
+                <div class="faculty-title"><%= faculty.title %></div>
+                <div class="faculty-dept"><%= faculty.department %></div>
+            </header>
+
+            <section class="info-grid">
+                <div class="info-item">
+                    <strong>Email</strong>
+                    <a href="mailto:<%= faculty.email %>"><%= faculty.email %></a>
+                </div>
+                <div class="info-item">
+                    <strong>Office Location</strong>
+                    <span><%= faculty.office %></span>
+                </div>
+                <div class="info-item">
+                    <strong>Phone Number</strong>
+                    <span><%= faculty.phone %></span>
+                </div>
+            </section>
+            
+            <section class="bio-section">
+                <h2>Biography</h2>
+                <p><%= faculty.bio %></p>
+            </section>
+        </article>
+    </main>
+</body>
+</html>

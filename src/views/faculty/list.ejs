@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="<%= bodyClass %>">
+
+    <main class="container">
+        <nav>
+            <a href="/">&larr; Back to Home</a>
+        </nav>
+
+        <header>
+            <p><%= greeting %></p>
+            <h1>Faculty Directory</h1>
+            <p>Meet our esteemed faculty members and explore their academic contributions.</p>
+        </header>
+
+        <hr>
+
+        <!-- Requirement: Display faculty list -->
+        <ul class="faculty-list">
+            <% faculty.forEach(member => { %>
+                <li class="faculty-item">
+                    <span class="faculty-name">
+                        <a href="/faculty/<%= member.id %>"><%= member.name %></a>
+                    </span>
+                    <span class="faculty-title"><%= member.title %></span>
+                    <span class="faculty-department"><%= member.department %></span>
+                </li>
+            <% }) %>
+        </ul>
+    </main>
+</body>
+</html>

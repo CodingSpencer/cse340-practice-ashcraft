@@ -12,7 +12,7 @@ const aboutPage = (req, res) => {
         hobbies: ["🏓 Ping Pong", "🥏 Disc Golf", "📚 Reading", "🛠️ Home Labs"]
     };
 
-    res.render('about', { 
+    res.render('pages/about', { 
         title: 'About', 
         heading: 'Welcome to About Me', 
         student: studentProfile 
@@ -20,7 +20,7 @@ const aboutPage = (req, res) => {
 };
 
 const demoPage = (req, res) => {
-    res.render('demo', { title: 'Middleware Demo Page' });
+    res.render('errors/demo', { title: 'Middleware Demo Page' });
 };
 
 //  Test error on middleware
