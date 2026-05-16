@@ -1,4 +1,4 @@
-import { getAllCourses, getCourseById, getSortedSections } from '../../models/catalog/catalog.js';
+import { getAllCourses, getCourseById, getSortedSections, getCoursesByDepartment } from '../../models/catalog/catalog.js';
 
 // Route handler for the course catalog list page
 const catalogPage = (req, res) => {
@@ -34,4 +34,23 @@ const courseDetailPage = (req, res, next) => {
     });
 };
 
-export { catalogPage, courseDetailPage };
+/**
+ * Renders the departments index page, grouping courses by their respective departments.
+ */
+const departmentsPage = (req, res, next) => {
+    try {
+        // Fetch the grouped data from your model
+        const departmentsData = getCoursesByDepartment();
+
+        // Render the view, passing along the title and data payload
+        res.render('departments', {
+            title: 'Departments Overview',
+            departments: departmentsData
+        });
+    } catch (err) {
+        // Cleanly catch any failures and pass them to your central server.js error handler
+        next(err);
+    }
+};
+
+export { catalogPage, courseDetailPage, departmentsPage };

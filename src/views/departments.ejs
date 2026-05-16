@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .departments-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .dept-section {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .dept-title {
+            color: #0076d6;
+            margin-top: 0;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+        .course-list {
+            list-style: none;
+            padding: 0;
+        }
+        .course-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed #f0f0f0;
+        }
+        .course-item:last-child {
+            border-bottom: none;
+        }
+        .course-link {
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+        .course-link:hover {
+            text-decoration: underline;
+            color: #0076d6;
+        }
+    </style>
+</head>
+<body class="<%= bodyClass %>">
+
+    <main class="departments-container">
+        <header>
+            <p><%= greeting %></p>
+            <h1>Academic Departments</h1>
+            <p>Browse our current course offerings organized by academic focus.</p>
+        </header>
+
+        <hr>
+
+        <% if (Object.keys(departments).length === 0) { %>
+            <p>No departments or courses found at this time.</p>
+        <% } else { %>
+            <!-- Loop through each department name (the keys of our object) -->
+            <% for (const deptName in departments) { %>
+                <section class="dept-section">
+                    <h2 class="dept-title">📁 <%= deptName %></h2>
+                    
+                    <ul class="course-list">
+                        <!-- Loop through the array of courses belonging to this department -->
+                        <% departments[deptName].forEach(course => { %>
+                            <li class="course-item">
+                                <a class="course-link" href="/catalog/<%= course.id %>">
+                                    <%= course.id.toUpperCase() %>: <%= course.name %>
+                                </a>
+                                <span class="badge"><%= course.credits %> Credits</span>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </section>
+            <% } %>
+        <% } %>
+
+        <footer>
+            <p><a href="/">&larr; Back to Home</a> | <a href="/catalog">Full Catalog &rarr;</a></p>
+            <p>&copy; <%= currentYear %> | Mode: <code><%= nodeEnv %></code></p>
+        </footer>
+    </main>
+
+</body>
+</html>
