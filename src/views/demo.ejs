@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <!-- Core Application Stylesheet -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Scoped styles for demo page elements */
+        .demo-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .card {
+            background: #f4f4f9;
+            border-left: 5px solid #0076d6;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: #e0e0e0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .badge.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="demo-container">
+        <h1>🚀 Express MVC Demo Page</h1>
+        <p>If you are seeing this page, your router, controller, and view engine are communicating perfectly!</p>
+
+        <hr>
+
+        <!-- System Environment Context Block -->
+        <section class="card">
+            <h2>System Environment</h2>
+            <p><strong>Current Mode:</strong> 
+                <span class="badge <%= nodeEnv.includes('dev') ? 'success' : '' %>">
+                    <%= nodeEnv %>
+                </span>
+            </p>
+            <% if (nodeEnv.includes('dev')) { %>
+                <p>💡 <em>Live reloading WebSocket is active on this port cluster.</em></p>
+            <% } %>
+        </section>
+
+        <!-- Custom Middleware Verification Diagnostics -->
+        <section class="card">
+            <h2>Custom Middleware Headers Active</h2>
+            <p>Your <code>addDemoHeaders</code> middleware successfully injected tracking data into this lifecycle request.</p>
+            <p>To view them:</p>
+            <ol>
+                <li>Press <kbd>F12</kbd> or right-click and choose <strong>Inspect</strong>.</li>
+                <li>Go to the <strong>Network</strong> tab and refresh the page.</li>
+                <li>Click on the <code>demo</code> request item.</li>
+                <li>Look under <strong>Response Headers</strong> for:
+                    <ul>
+                        <li><code>X-Demo-Page: true</code></li>
+                        <li><code>X-Middleware-Demo: This is a middleware demo header</code></li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Navigation Links -->
+        <p><a href="/">&larr; Back to Home</a> | <a href="/about">About Me &rarr;</a></p>
+    </main>
+
+</body>
+</html>

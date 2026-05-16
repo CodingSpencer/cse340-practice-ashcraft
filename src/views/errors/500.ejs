@@ -1,85 +1,33 @@
-<%- include('../partials/header') %>
-<main>
-    <h1>Something Went Wrong</h1>
-    <p>We are experiencing technical difficulties. Our team has been notified and is working to fix the issue.</p>
-    <p><a href="/">Return to homepage</a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Server Error</title>
+    <style>
+        body { font-family: sans-serif; background: #fafafa; color: #333; margin: 0; padding: 2rem; }
+        .error-container { max-width: 600px; margin: 4rem auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-top: 5px solid #dc3545; }
+        h1 { color: #dc3545; margin-top: 0; }
+        pre { background: #f8f9fa; padding: 1rem; border-radius: 4px; overflow-x: auto; border: 1px solid #e9ecef; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
 
-    <% if (NODE_ENV === 'development') { %>
-        <details open>
-            <summary>Error Details (Development Only)</summary>
-            <pre><%= error %></pre>
+    <div class="error-container">
+        <h1>⚠️ 500 Internal Server Error</h1>
+        <p>The application encountered a deliberate test error.</p>
+        
+        <% if (typeof error !== 'undefined') { %>
+            <p><strong>Message:</strong> <%= error %></p>
+        <% } %>
+
+        <% if (typeof stack !== 'undefined' && stack) { %>
+            <h3>Stack Trace:</h3>
             <pre><%= stack %></pre>
-        </details>
-    <% } %>
-</main>
+        <% } %>
 
-<style>
-    main {
-        max-width: 800px;
-        margin: 50px auto;
-        padding: 40px;
-        background-color: white;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+        <p><a href="/">&larr; Return to Home Page</a></p>
+    </div>
 
-    main h1 {
-        font-size: 3rem;
-        color: #cc0000;
-        margin-bottom: 20px;
-    }
-
-    main p {
-        font-size: 1.2rem;
-        color: #333;
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
-
-    main a {
-        color: #0066cc;
-        font-weight: bold;
-        text-decoration: none;
-    }
-
-    main a:hover {
-        text-decoration: underline;
-    }
-
-    details {
-        margin-top: 30px;
-        text-align: left;
-        background-color: #f4f4f4;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 15px;
-    }
-
-    summary {
-        cursor: pointer;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #333;
-    }
-
-    pre {
-        background-color: #222;
-        color: #f4f4f4;
-        padding: 15px;
-        border-radius: 5px;
-        overflow-x: auto;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        font-size: 0.95rem;
-    }
-
-    footer {
-        margin-top: 50px;
-        padding: 20px;
-        background-color: #333;
-        color: white;
-        text-align: center;
-    }
-</style>
-<%- include('../partials/footer') %>
+</body>
+</html>
