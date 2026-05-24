@@ -1,7 +1,19 @@
 <head>
-    <link rel="stylesheet" href="/css/main.css"> <% if (typeof cssFile !== 'undefined') { %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    
+    <!-- Global application styles -->
+    <link rel="stylesheet" href="/css/main.css"> 
+    
+    <!-- Legacy conditional style fallback -->
+    <% if (typeof cssFile !== 'undefined') { %>
         <link rel="stylesheet" href="<%= cssFile %>">
     <% } %>
+
+    <!-- New Dynamic Asset Management Injection -->
+    <%- renderStyles() %>
+    <%- renderScripts() %>
 </head>
 
 <header class="site-header">

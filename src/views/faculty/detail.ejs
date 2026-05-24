@@ -1,44 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/css/main.css">
-</head>
-<body class="<%= bodyClass %>">
-    <main class="container">
-        <nav>
-            <a href="/faculty">&larr; Back to Faculty Directory</a>
-        </nav>
+<%- include('../partials/header', { 
+    heading: `${faculty.name} - Faculty Profile`, 
+    cssFile: '/css/styles.css' 
+}) %>
 
-        <article class="profile-card">
-            <header>
-                <h1><%= faculty.name %></h1>
-                <div class="faculty-title"><%= faculty.title %></div>
-                <div class="faculty-dept"><%= faculty.department %></div>
-            </header>
+<main class="container">
+    <nav class="navigation">
+        <p><a href="/faculty">&larr; Back to Faculty Directory</a></p>
+    </nav>
 
-            <section class="info-grid">
-                <div class="info-item">
-                    <strong>Email</strong>
+    <article class="profile-card">
+        <header class="course-header">
+            <h1><%= faculty.name %></h1>
+            <div class="faculty-title"><strong><%= faculty.title %></strong></div>
+            <div class="faculty-dept"><%= faculty.department %> Area</div>
+        </header>
+
+        <div class="sections">
+            <h2>Contact Information</h2>
+            <div class="section-list">
+                <div class="section-card">
+                    <strong>Email:</strong> 
                     <a href="mailto:<%= faculty.email %>"><%= faculty.email %></a>
                 </div>
-                <div class="info-item">
-                    <strong>Office Location</strong>
+                <div class="section-card">
+                    <strong>Office Location:</strong> 
                     <span><%= faculty.office %></span>
                 </div>
-                <div class="info-item">
-                    <strong>Phone Number</strong>
+                <div class="section-card">
+                    <strong>Phone Number:</strong> 
                     <span><%= faculty.phone %></span>
                 </div>
-            </section>
-            
-            <section class="bio-section">
+            </div>
+        </div>
+        
+        <!-- Keep biography display if the table schema holds bio info -->
+        <% if (faculty.bio) { %>
+            <div class="course-description" style="margin-top: 20px;">
                 <h2>Biography</h2>
                 <p><%= faculty.bio %></p>
-            </section>
-        </article>
-    </main>
-</body>
-</html>
+            </div>
+        <% } %>
+    </article>
+</main>
+
+<%- include('../partials/footer') %>

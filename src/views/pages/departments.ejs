@@ -1,45 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/css/main.css">
-</head>
-<body class="<%= bodyClass %>">
-    <%- include('../partials/header', { heading: "Academic Departments" }) %>
+<%- include('../partials/header', { 
+    heading: "Academic Departments",
+    cssFile: "/css/styles.css" 
+}) %>
 
-    <main class="departments-container">
-        <header>
-            <h1>Academic Departments</h1>
-            <p>Browse our current course offerings organized by academic focus.</p>
-        </header>
+<main class="container">
+    <div class="course-header">
+        <h1>Academic Departments</h1>
+        <p class="course-description">Browse our current course offerings organized by academic focus.</p>
+    </div>
 
-        <hr>
-
-        <% if (Object.keys(departments).length === 0) { %>
+    <div class="sections">
+        <% if (!departments || Object.keys(departments).length === 0) { %>
             <p>No departments or courses found at this time.</p>
         <% } else { %>
-            <!-- Loop through each department name (the keys of our object) -->
+            <!-- Loop through each department name (the keys of our grouped object) -->
             <% for (const deptName in departments) { %>
-                <section class="dept-section">
-                    <h2 class="dept-title">📁 <%= deptName %></h2>
+                <section class="dept-section" style="margin-bottom: 30px;">
+                    <h2 class="dept-title" style="margin-bottom: 15px;">📁 <%= deptName %></h2>
                     
-                    <ul class="course-list">
+                    <div class="section-list">
                         <!-- Loop through the array of courses belonging to this department -->
                         <% departments[deptName].forEach(course => { %>
-                            <li class="course-item">
-                                <a class="course-link" href="/catalog/<%= course.id %>">
-                                    <%= course.id.toUpperCase() %>: <%= course.name %>
-                                </a>
-                                <span class="badge"><%= course.credits %> Credits</span>
-                            </li>
+                            <div class="section-card" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <div class="section-time" style="font-weight: normal; margin-bottom: 0;">
+                                    <a href="/catalog/<%= course.slug %>" style="font-weight: bold; text-decoration: none;">
+                                        <%= course.courseCode %>: <%= course.name %>
+                                    </a>
+                                </div>
+                                <span class="badge" style="background-color: #f0f0f0; padding: 4px 10px; border-radius: 4px; font-size: 0.9em; font-weight: bold;">
+                                    <%= course.creditHours %> Credits
+                                </span>
+                            </div>
                         <% }) %>
-                    </ul>
+                    </div>
                 </section>
             <% } %>
         <% } %>
-    </main>
-    <%- include('../partials/footer') %>
-</body>
-</html>
+    </div>
+
+    <div class="navigation" style="margin-top: 30px;">
+        <p><a href="/catalog">&larr; Back to Course Catalog</a></p>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

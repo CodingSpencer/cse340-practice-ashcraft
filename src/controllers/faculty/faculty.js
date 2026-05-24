@@ -1,50 +1,28 @@
-import * as facultyModel from '../../models/faculty/faculty.js';
+import { getFacultyBySlug, getSortedFaculty } from '../../models/faculty/faculty.js';
 
-const facultyListPage = async (req, res, next) => {
-    try {
-        const sortBy = req.query.sort || 'name';
-        
-        // Calls the wrapper function pointing to getSortedFaculty('name')
-        const facultyData = await facultyModel.getSortedFaculty(sortBy);
-
-        res.render('faculty/list', {
-            title: 'Faculty List',
-            greeting: 'Welcome to the Faculty Directory', 
-            bodyClass: 'faculty-page',                 
-            faculty: facultyData 
-        });
-    } catch (error) {
-        next(error);
-    }
+const facultyListPage = async (req, res) => {
+    const validSortOptions = ['name', 'department', 'title'];
+    const sortBy = validSortOptions.includes(req.query.sort) ? req.query.sort : 'department';
+    const facultyList = await getSortedFaculty(sortBy);
+    res.render('faculty/list', {
+        title: 'Faculty Directory',
+        faculty: facultyList,
+        currentSort: sortBy
+    });
 };
 
 const facultyDetailPage = async (req, res, next) => {
-    try {
-        const facultyId = req.params.facultyId;
-
-        // Validation updated: Ensures the ID is a string slug and not empty/whitespace
-        if (!facultyId || typeof facultyId !== 'string' || facultyId.trim() === '') {
-            const invalidErr = new Error(`Invalid Faculty ID format: "${facultyId}"`);
-            invalidErr.status = 400; 
-            return next(invalidErr);
-        }
-
-        const faculty = await facultyModel.getFacultyById(facultyId);
-
-        // If faculty member doesn't exist in the data object, trigger a 404
-        if (!faculty) {
-            const notFoundErr = new Error(`Faculty member "${facultyId}" not found`);
-            notFoundErr.status = 404;
-            return next(notFoundErr);
-        }
-
-        res.render('faculty/detail', {
-            title: faculty.name,
-            faculty: faculty
-        });
-    } catch (error) {
-        next(error);
+    const facultySlug = req.params.facultySlug;
+    const facultyMember = await getFacultyBySlug(facultySlug);
+    if (Object.keys(facultyMember).length === 0) {
+        const err = new Error(`Faculty member ${facultySlug} not found`);
+        err.status = 404;
+        return next(err);
     }
+    res.render('faculty/detail', {
+        title: `${facultyMember.name} - Faculty Profile`,
+        faculty: facultyMember
+    });
 };
 
 export { facultyListPage, facultyDetailPage };

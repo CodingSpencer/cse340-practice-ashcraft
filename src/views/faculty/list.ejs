@@ -1,38 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/css/main.css">
-</head>
-<body class="<%= bodyClass %>">
+<%- include('../partials/header', { 
+    heading: "Faculty Directory", 
+    cssFile: '/css/styles.css' 
+}) %>
 
-    <main class="container">
-        <nav>
-            <a href="/">&larr; Back to Home</a>
-        </nav>
+<main class="container">
+    <nav class="navigation">
+        <p><a href="/">&larr; Back to Home</a></p>
+    </nav>
 
-        <header>
-            <p><%= greeting %></p>
-            <h1>Faculty Directory</h1>
-            <p>Meet our esteemed faculty members and explore their academic contributions.</p>
-        </header>
+    <div class="course-header">
+        <% if (locals.greeting) { %>
+            <p class="course-meta"><%= greeting %></p>
+        <% } %>
+        <h1>Faculty Directory</h1>
+        <p class="course-description">Meet our esteemed faculty members and explore their academic contributions.</p>
+    </div>
 
-        <hr>
+    <div class="sections">
+        <div class="sections-header">
+            <h2>Our Faculty</h2>
+            <!-- Optional enhancement: if you want to support step 7's sorting feature visually -->
+            <div class="sort-options">
+                <span>Sort by: </span>
+                <a href="/faculty?sort=name" class="<%= currentSort === 'name' ? 'active' : '' %>">Name</a>
+                <a href="/faculty?sort=department" class="<%= currentSort === 'department' ? 'active' : '' %>">Department</a>
+                <a href="/faculty?sort=title" class="<%= currentSort === 'title' ? 'active' : '' %>">Title</a>
+            </div>
+        </div>
 
-        <!-- Requirement: Display faculty list -->
-        <ul class="faculty-list">
-            <% faculty.forEach(member => { %>
-                <li class="faculty-item">
-                    <span class="faculty-name">
-                        <a href="/faculty/<%= member.id %>"><%= member.name %></a>
-                    </span>
-                    <span class="faculty-title"><%= member.title %></span>
-                    <span class="faculty-department"><%= member.department %></span>
-                </li>
-            <% }) %>
-        </ul>
-    </main>
-</body>
-</html>
+        <div class="section-list">
+            <% if (faculty && faculty.length > 0) { %>
+                <% faculty.forEach(member => { %>
+                    <div class="section-card">
+                        <div class="section-time">
+                            <strong><a href="/faculty/<%= member.slug %>"><%= member.name %></a></strong>
+                        </div>
+                        <div class="section-title">Role: <%= member.title %></div>
+                        <div class="section-room">Department: <%= member.department %></div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No faculty members found.</p>
+            <% } %>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

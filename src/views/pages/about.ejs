@@ -1,29 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/css/main.css">
-</head>
-<body>
-    <%- include('../partials/header', { heading: "About Me" }) %>
+<%- include('../partials/header', { 
+    heading: "About Me", 
+    cssFile: '/css/styles.css' 
+}) %>
 
-    <div class="student-info">
-        <p><strong>Name:</strong> <%= student.name %></p>
-        <p><strong>Age:</strong> <%= student.age %></p>
-        <p><strong>Description:</strong> <%= student.desc %></p>
-        <p><strong>Major:</strong> <%= student.major %></p>
-
-        <p><strong>Hobbies:</strong></p>
-        <ul>
-            <% student.hobbies.forEach(hobby => { %>
-                <li><%= hobby %></li>
-            <% }) %>
-        </ul>
-        <img src="/images/Spencer-Headshot.jpg" alt="Spencer Headshot">
+<main class="container">
+    <div class="course-header">
+        <h1><%= title %></h1>
+        <p class="course-meta">Student Profile</p>
     </div>
 
-    <%- include('../partials/footer') %>
-</body>
-</html>
+    <div class="sections">
+        <div class="section-list" style="display: grid; grid-template-columns: 1fr 200px; gap: 20px; align-items: start;">
+            
+            <!-- Student Information details -->
+            <div class="student-info">
+                <div class="section-card" style="margin-bottom: 15px;">
+                    <p><strong>Name:</strong> <%= student.name %></p>
+                    <p><strong>Age:</strong> <%= student.age %> years old</p>
+                    <p><strong>Major:</strong> <%= student.major %></p>
+                </div>
+
+                <div class="section-card" style="margin-bottom: 15px;">
+                    <h3>Description</h3>
+                    <p class="course-description" style="padding: 0;"><%= student.desc %></p>
+                </div>
+
+                <div class="section-card">
+                    <h3>Hobbies</h3>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <% student.hobbies.forEach(hobby => { %>
+                            <li style="margin-bottom: 5px;"><%= hobby %></li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Profile Image Side-Block -->
+            <div class="profile-image-wrapper">
+                <img src="/images/Spencer-Headshot.jpg" alt="Spencer Headshot" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="navigation" style="margin-top: 30px;">
+        <p><a href="/">&larr; Back to Home</a></p>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

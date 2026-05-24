@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // Import MVC components
+import { setupDatabase, testConnection } from './src/models/setup.js';
 import routes from './src/controllers/routes.js';
 import { addLocalVariables } from './src/middleware/global.js';
 
@@ -93,6 +94,12 @@ if (NODE_ENV.includes('dev')) {
         console.error('Failed to start WebSocket server:', error);
     }
 }
+
+app.listen(PORT, async () => {
+    await setupDatabase();
+    await testConnection();
+    console.log(`Server is running on http://127.0.0.1:${PORT}`);
+});
 
 /**
  * Start Server
