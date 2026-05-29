@@ -13,6 +13,7 @@
 /* PARTIALS */
 @import "./components/sections/header.css" layer(components);
 @import "./components/sections/card.css" layer(components);
+@import "./components/sections/registration.css" layer(components);
 
 /* PAGES */
 @import "./components/pages/catalog.css" layer(components);
@@ -20,6 +21,8 @@
 @import "./components/pages/departments.css" layer(components);
 @import "./components/pages/faculty.css" layer(components);
 @import "./components/pages/page.css" layer(components);
+@import "./components/pages/contact.css" layer(components);
+@import "./components/pages/login.css" layer(components);
 
 /* UTILITIES */
 @import "./utilities/utilities.css" layer(utilties);
