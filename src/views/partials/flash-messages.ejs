@@ -1,0 +1,31 @@
+<% if (messages && messages.error && messages.error.length > 0) { %>
+    <div class="flash flash-error" role="alert">
+        <% messages.error.forEach(msg => { %>
+            <p><%= msg %></p>
+        <% }); %>
+    </div>
+<% } %>
+
+<% if (messages && messages.success && messages.success.length > 0) { %>
+    <div class="flash flash-success" role="alert">
+        <% messages.success.forEach(msg => { %>
+            <p><%= msg %></p>
+        <% }); %>
+    </div>
+<% } %>
+
+<% if (messages && messages.warning && messages.warning.length > 0) { %>
+    <div class="flash flash-warning" role="alert">
+        <% messages.warning.forEach(msg => { %>
+            <p><%= msg %></p>
+        <% }); %>
+    </div>
+<% } %>
+
+<% if (messages && messages.info && messages.info.length > 0) { %>
+    <div class="flash flash-info" role="alert">
+        <% messages.info.forEach(msg => { %>
+            <p><%= msg %></p>
+        <% }); %>
+    </div>
+<% } %>

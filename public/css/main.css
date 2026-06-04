@@ -11,6 +11,7 @@
 
 /* COMPONENTS */
 /* PARTIALS */
+@import "./components/flash.css" layer(components);
 @import "./components/sections/header.css" layer(components);
 @import "./components/sections/card.css" layer(components);
 @import "./components/sections/registration.css" layer(components);

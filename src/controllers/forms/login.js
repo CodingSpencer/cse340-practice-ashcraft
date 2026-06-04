@@ -31,6 +31,9 @@ const processLogin = async (req, res) => {
 
     if (!errors.isEmpty()) {
         console.error('Validation errors:', errors.array());
+        errors.array().forEach(err => {
+            req.flash('error', err.msg);
+        });
         return res.redirect('/login');
     }
 
@@ -41,6 +44,7 @@ const processLogin = async (req, res) => {
 
         if (!user) {
             console.error('User not found');
+            req.flash('error', 'Email or password is incorrect');
             return res.redirect('/login');
         }
 
@@ -48,15 +52,18 @@ const processLogin = async (req, res) => {
 
         if (!isPasswordValid) {
             console.error('Invalid password');
+            req.flash('error', 'Email or password is incorrect');
             return res.redirect('/login');
         }
 
         delete user.password;
 
         req.session.user = user;
+        req.flash('success', 'Login successful! Welcome back.');
         res.redirect('/dashboard');
     } catch (error) {
         console.error('Login error:', error);
+        req.flash('error', 'An error occurred during login. Please try again.');
         res.redirect('/login');
     }
 };
@@ -70,10 +77,12 @@ const processLogout = (req, res) => {
         if (err) {
             console.error('Error destroying session:', err);
             res.clearCookie('connect.sid');
+            req.flash('error', 'An error occurred during logout.');
             return res.redirect('/');
         }
 
         res.clearCookie('connect.sid');
+        req.flash('success', 'You have been successfully logged out.');
         res.redirect('/');
     });
 };

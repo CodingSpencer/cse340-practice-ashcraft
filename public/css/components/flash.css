@@ -1,0 +1,48 @@
+/* Flash Message Styles */
+
+.flash {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.25rem;
+    border-left: 4px solid;
+}
+
+.flash p {
+    margin: 0.5rem 0;
+}
+
+.flash p:first-child {
+    margin-top: 0;
+}
+
+.flash p:last-child {
+    margin-bottom: 0;
+}
+
+/* Error Messages */
+.flash-error {
+    background-color: #fee;
+    color: #c00;
+    border-color: #c00;
+}
+
+/* Success Messages */
+.flash-success {
+    background-color: #efe;
+    color: #060;
+    border-color: #060;
+}
+
+/* Warning Messages */
+.flash-warning {
+    background-color: #ffeaa7;
+    color: #856404;
+    border-color: #856404;
+}
+
+/* Info Messages */
+.flash-info {
+    background-color: #e7f3ff;
+    color: #004085;
+    border-color: #004085;
+}
