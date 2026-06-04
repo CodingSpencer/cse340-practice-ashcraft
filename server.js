@@ -9,6 +9,7 @@ import { addLocalVariables } from './src/middleware/global.js';
 
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
+import flash from 'connect-flash'; // 💡 Make sure this package is imported!
 import { caCert } from './src/models/db.js';
 import { startSessionCleanup } from './src/utils/session-cleanup.js';
 
@@ -27,8 +28,6 @@ const app = express();
  */
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src', 'views'));
-
-// Double-check: If your public folder is inside 'src', change 'public' to 'src/public'
 app.use(express.static(path.join(__dirname, 'public'))); 
 
 /**
@@ -38,8 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 /**
- * 3. Session Middleware Configuration (MOVED UP ⬆️)
- * This ensures req.session is populated before any routes try to access it.
+ * 3. Session Middleware Configuration
  */
 const pgSession = connectPgSimple(session);
 
@@ -47,7 +45,6 @@ app.use(session({
     store: new pgSession({
         conObject: {
             connectionString: process.env.DB_URL,
-            // Configure SSL for session store connection (required by BYU-I databases)
             ssl: {
                 ca: caCert,
                 rejectUnauthorized: true,
@@ -71,35 +68,31 @@ app.use(session({
 startSessionCleanup();
 
 /**
- * 4. Global Application Middleware (Can safely use req.session now)
+ * 4. Flash Message Configuration (MOVED UP ⬆️)
+ * Must be immediately after session, but before routes!
  */
-app.use(addLocalVariables);
+app.use(flash()); // Initializes req.flash utility
 
-/**
- * 5. Application Routes
- */
-app.use('/', routes);
-
-// Flash Middleware
-// Express-Session middleware must come before this!
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
-}));
-
-// Flash Message Middleware
 app.use((req, res, next) => {
-  // express-flash stores messages in req.flash()
   res.locals.messages = req.flash(); 
   next();
 });
 
 /**
- * 6. Error Handling Middleware (MUST be at the very bottom of the chain)
+ * 5. Global Application Middleware (Can safely use session & flash now)
  */
+app.use(addLocalVariables);
 
-// Catch-all 404 Handler (Triggers if no routes above matched)
+/**
+ * 6. Application Routes (MOVED DOWN ⬇️)
+ * Routes are now fully supercharged with session, flash, and local variables.
+ */
+app.use('/', routes);
+
+/**
+ * 7. Error Handling Middleware (MUST be at the very bottom of the chain)
+ */
+// Catch-all 404 Handler
 app.use((req, res, next) => {
     const err = new Error('Page Not Found');
     err.status = 404;
@@ -132,7 +125,7 @@ app.use((err, req, res, next) => {
 });
 
 /**
- * 7. Development WebSocket Server (Live Reloading)
+ * 8. Development WebSocket Server (Live Reloading)
  */
 if (NODE_ENV.includes('dev')) {
     const ws = await import('ws');
@@ -154,7 +147,7 @@ if (NODE_ENV.includes('dev')) {
 }
 
 /**
- * 8. Start Server (Combined into a single listen block)
+ * 9. Start Server
  */
 app.listen(PORT, async () => {
     try {
