@@ -80,6 +80,21 @@ app.use(addLocalVariables);
  */
 app.use('/', routes);
 
+// Flash Middleware
+// Express-Session middleware must come before this!
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Flash Message Middleware
+app.use((req, res, next) => {
+  // express-flash stores messages in req.flash()
+  res.locals.messages = req.flash(); 
+  next();
+});
+
 /**
  * 6. Error Handling Middleware (MUST be at the very bottom of the chain)
  */
