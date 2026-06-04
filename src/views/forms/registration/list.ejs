@@ -1,5 +1,16 @@
 <%- include('../../partials/header') %>
 <main>
+    <% const messages = flash(); %>
+    <% Object.keys(messages).forEach(type => { %>
+        <% if (messages[type].length > 0) { %>
+            <div class="alert <%= type %>">
+                <% messages[type].forEach(msg => { %>
+                    <p><%= msg %></p>
+                <% }); %>
+            </div>
+        <% } %>
+    <% }); %>
+    
     <h1><%= title %></h1>
 
     <% if (users && users.length > 0) { %>
