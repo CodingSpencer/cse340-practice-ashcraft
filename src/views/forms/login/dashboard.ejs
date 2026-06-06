@@ -21,6 +21,10 @@
                 <span class="label">Created At:</span>
                 <span class="value"><%= new Date(user.created_at).toLocaleDateString() %></span>
             </div>
+            <div class="user-detail">
+                <span class="label">Role:</span>
+                <span class="value"><%= user.roleName %></span>
+            </div>
         </div>
 
         <div class="session-debug">
