@@ -25,3 +25,16 @@
         display: block;
     }
 }
+
+.faculty-card {
+    position: relative;
+}
+
+.faculty-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 7px;
+    background: url('https://placehold.co/480') center / cover no-repeat;
+}

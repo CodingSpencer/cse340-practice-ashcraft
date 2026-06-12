@@ -92,3 +92,15 @@
     font-style: italic;
     color: var(--text-color-medium);
 }
+
+.faculty-details-img,
+.faculty-list-img {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    border: var(--border-width-thin) solid var(--card-border);
+    box-shadow: 0 var(--border-width-thick) var(--radius-sm) var(--shadow-color-rgba);
+}
