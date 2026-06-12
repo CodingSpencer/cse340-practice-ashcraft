@@ -58,18 +58,17 @@ const processLogout = (req, res) => {
         return res.redirect('/');
     }
 
+    req.flash('success', 'You have been successfully logged out.');
+    req.session.user = null;
+    res.clearCookie('connect.sid');
+
     req.session.destroy((err) => {
         if (err) {
-            console.error('Error destroying session:', err);
-            res.clearCookie('connect.sid');
-            req.flash('error', 'An error occurred during logout.');
-            return res.redirect('/');
+            console.error('Non-blocking session destruction error:', err);
         }
-
-        res.clearCookie('connect.sid');
-        req.flash('success', 'You have been successfully logged out.');
-        res.redirect('/');
     });
+
+    return res.redirect('/');
 };
 
 const showDashboard = (req, res) => {
